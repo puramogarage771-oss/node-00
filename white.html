@@ -18,15 +18,25 @@
 <audio id="voice" src="voice.mp3" preload="auto"></audio>
 
 <script>
-  const audio = document.getElementById('voice');
-  let started = false;
+  const audio = document.getElementById("voice");
+  let unlocked = false;
 
-  document.body.addEventListener('click', () => {
-    if(started) return;
-    started = true;
-    setTimeout(() => {
-      audio.play();
-    }, 5000);
+  document.body.addEventListener("click", () => {
+    if (unlocked) return;
+    unlocked = true;
+
+    // 🔓 まず無音で再生して「許可」を取る
+    audio.volume = 0;
+    audio.play().then(() => {
+      audio.pause();
+      audio.currentTime = 0;
+
+      // ⏱ 5秒後に本再生
+      setTimeout(() => {
+        audio.volume = 1;
+        audio.play();
+      }, 5000);
+    });
   });
 </script>
 
