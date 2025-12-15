@@ -9,34 +9,39 @@
     margin:0;
     height:100svh;
     background:#ffffff;
+    display:grid;
+    place-items:center;
+    font-family:monospace;
     cursor:pointer;
+  }
+  .hint{
+    color:#cfcfcf;
+    font-size:14px;
+    letter-spacing:0.3em;
   }
 </style>
 </head>
 <body>
 
+<div class="hint">（クリック）</div>
+
 <audio id="voice" src="voice.mp3" preload="auto"></audio>
 
 <script>
-  const audio = document.getElementById("voice");
-  let unlocked = false;
+  const audio = document.getElementById('voice');
+  let started = false;
 
-  document.body.addEventListener("click", () => {
-    if (unlocked) return;
-    unlocked = true;
+  document.body.addEventListener('click', () => {
+    if (started) return;
+    started = true;
 
-    // 🔓 まず無音で再生して「許可」を取る
-    audio.volume = 0;
-    audio.play().then(() => {
-      audio.pause();
-      audio.currentTime = 0;
+    // ヒントを消す
+    document.querySelector('.hint').textContent = '';
 
-      // ⏱ 5秒後に本再生
-      setTimeout(() => {
-        audio.volume = 1;
-        audio.play();
-      }, 5000);
-    });
+    // 5秒の沈黙
+    setTimeout(() => {
+      audio.play();
+    }, 5000);
   });
 </script>
 
