@@ -3,35 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>WHITE ROOM</title>
+<title>NODE-00</title>
 <style>
   body{
     margin:0;
     height:100svh;
-    background:#ffffff;
+    background:#000;
+    color:#00ffcc;
+    display:grid;
+    place-items:center;
+    font-family:monospace;
+  }
+  .enter{
     cursor:pointer;
+    letter-spacing:0.3em;
+    font-size:22px;          /* ← 少し大きめ */
+    padding:20px 30px;       /* ← クリックしやすく */
+  }
+  .enter:hover{
+    text-shadow:0 0 12px #00ffcc;
   }
 </style>
 </head>
 <body>
 
-<audio id="voice" src="voice.mp3" preload="auto"></audio>
-
-<script>
-  const audio = document.getElementById('voice');
-  let started = false;
-
-  document.body.addEventListener('click', () => {
-    if(started) return;
-    started = true;
-
-    // 5秒の沈黙
-    setTimeout(() => {
-      audio.play();
-    }, 5000);
-  });
-</script>
+<div class="enter" onclick="location.href='white.html'">
+  中へどうぞ
+</div>
 
 </body>
 </html>
+
 
